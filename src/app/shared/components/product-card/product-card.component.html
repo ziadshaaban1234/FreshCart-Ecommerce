@@ -1,0 +1,74 @@
+<div
+    class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300">
+    <div class="relative">
+        <img class="w-full h-60 object-contain bg-white" [alt]="product().title" [src]="product().imageCover" />
+
+        <div class="absolute top-3 right-3 flex flex-col space-y-2">
+
+            <!-- Wishlist -->
+
+
+            @if (inWishListFlag()===false) {
+            <button (click)="addToWishlist()" title="Add To Wish List"
+                class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center transition shadow-sm text-gray-600 hover:text-pink-500">
+                <i class="far fa-heart"></i>
+            </button>
+            }
+            @else{
+            <button (click)="deleteItemFromWishlist()" title="Remove From Wish List"
+                class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center transition shadow-sm  text-pink-500">
+                <i class="fa-solid fa-heart"></i>
+            </button>
+            }
+            <!-- Compare -->
+            <button title="Compare"
+                class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 transition shadow-sm">
+                <i class="fas fa-arrows-rotate"></i>
+            </button>
+
+            <!-- View -->
+            <a [routerLink]="['/product-details',product()._id]" title="View Product Details"
+                class="bg-white cursor-pointer h-8 w-8 rounded-full flex items-center justify-center text-gray-600 hover:text-green-600 transition shadow-sm">
+                <i class="far fa-eye"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="p-4">
+        <div class="text-xs text-gray-500 mb-1">{{product().category.name}}</div>
+
+        <h3 class="font-medium mb-1 cursor-pointer">
+            <a class="line-clamp-2">
+                {{product().title}}
+            </a>
+        </h3>
+
+        <!-- Rating -->
+        <div class="flex items-center mb-2">
+            <div class="flex text-yellow-400 mr-2">
+                @for (num of [1, 2, 3, 4, 5]; track num) {
+                @if (num <= product().ratingsAverage) { <i class="fa-solid fa-star"></i>
+                    }
+                    @else if (num - 0.5 <= product().ratingsAverage) { <i class="fa-solid fa-star-half-stroke"></i>
+                        }
+                        @else{ <i class="fa-regular fa-star"></i>
+                        }
+
+                        }
+            </div>
+            <span class="text-xs text-gray-500">{{product().ratingsAverage}} ({{product().ratingsQuantity}})</span>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <span class="text-lg font-bold text-gray-800">{{product().price |currency:'EGP'}}</span>
+
+            <!-- Add -->
+            <button title="Add To Cart" (click)="addToCart()"
+                class="h-10 w-10 rounded-full flex items-center justify-center transition bg-primary-600 text-white cursor-pointer bg-green-700">
+                <i class="fas fa-plus"></i>
+            </button>
+
+        </div>
+    </div>
+</div>

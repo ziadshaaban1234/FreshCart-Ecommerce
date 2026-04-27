@@ -1,0 +1,168 @@
+@if (prodData()._id) {
+<!--Selected Product details-->
+<section id="product-details" class="container mx-auto px-4 py-6">
+    <nav aria-label="Breadcrumb" class="py-4">
+        <div class="container mx-auto px-4">
+            <ol class="flex items-center flex-wrap gap-1 text-sm">
+                <li class="flex items-center"><a
+                        class="text-gray-500 hover:text-primary-600 transition flex items-center gap-1.5"
+                        routerLink="/home">
+                        <i class="fa-solid fa-home"></i>Home</a>
+                    <i class="fa-solid fa-angle-right text-gray-400 text-xs my-2"></i>
+                </li>
+                <li class="flex items-center"><a
+                        class="text-gray-500 hover:text-primary-600 transition flex items-center gap-1.5"
+                        routerLink="/categories/6439d58a0049ad0b52b9003f">{{prodData().category.name}}</a>
+                    <i class="fa-solid fa-angle-right text-gray-400 text-xs my-2"></i>
+                </li>
+                <li class="flex items-center"><a
+                        class="text-gray-500 hover:text-primary-600 transition flex items-center gap-1.5"
+                        routerLink="/categories/6439d58a0049ad0b52b9003f/6407f1bcb575d3b90bf95797">{{prodData().subcategory[0].name}}</a>
+                    <i class="fa-solid fa-angle-right text-gray-400 text-xs my-2"></i>
+                </li>
+                <li class="text-gray-900 font-medium truncate max-w-xs">{{prodData().title}}</li>
+            </ol>
+        </div>
+    </nav>
+    <div class="grid lg:grid-cols-[20%_minmax(0,1fr)] items-center gap-6">
+        <!--Prodcut Images-->
+        <div class="bg-white rounded-xl shadow-sm p-4 self-start sticky top-4">
+
+
+
+            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="mySwiper"
+                thumbs-swiper=".mySwiper2" space-between="10">
+                @for (prod of prodData().images; track $index) {
+                <swiper-slide>
+                    <img [src]="prod" class="w-full object-contain" [alt]="prodData().title" />
+                </swiper-slide>
+                }
+            </swiper-container>
+
+            <div class="pt-4">
+
+                <swiper-container class="mySwiper2" space-between="10" slides-per-view="3" free-mode="true"
+                    watch-slides-progress="true">
+                    @for (prod of prodData().images; track $index) {
+                    <swiper-slide>
+                        <img [src]="prod" [alt]="prodData().title"
+                            class="cursor-pointer hover:border-4 border-primary-700">
+                    </swiper-slide>
+                    }
+
+                </swiper-container>
+            </div>
+
+        </div>
+
+        <!--product details-->
+        <div class="bg-white rounded-xl shadow-sm p-4 self-start">
+            <!--bages-->
+            <div class="flex gap-2 flex-wrap mb-4">
+                <a routerLink="/categories"
+                    class="bg-primary-50 hover:bg-primary-100 transition text-primary-700 font-medium text-xs rounded-full px-3 py-2">
+                    {{prodData().category.slug}}
+                </a>
+                <span class="bg-gray-50 text-gray-700 font-medium text-xs rounded-full px-3 py-2">
+                    {{prodData().brand.slug}} </span>
+            </div>
+            <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">{{prodData().title}}</h1>
+            <!-- Rating -->
+            <div class="flex items-center mb-2">
+                <div class="flex text-yellow-400 mr-2">
+                    @for (num of [1, 2, 3, 4, 5]; track num) {
+                    @if (num <= prodData().ratingsAverage) { <i class="fa-solid fa-star"></i>
+                        }
+                        @else if (num - 0.5 <= prodData().ratingsAverage) { <i class="fa-solid fa-star-half-stroke"></i>
+                            }
+                            @else{ <i class="fa-regular fa-star"></i>
+                            }
+
+                            }
+                </div>
+                <span class="text-xs text-gray-500">{{prodData().ratingsAverage}}
+                    ({{prodData().ratingsQuantity}})</span>
+            </div>
+
+            <!--Price-->
+            <div class="mb-4">
+                <span class="text-3xl font-bold text-gray-900">{{prodData().price|currency:"EGP"}}</span>
+            </div>
+            <!--Stock-->
+            <div class="mb-6">
+                <span class="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full"
+                    [class.bg-green-50]="prodData().quantity > 0" [class.text-green-700]="prodData().quantity > 0"
+                    [class.bg-red-50]="prodData().quantity === 0" [class.text-red-700]="prodData().quantity === 0">
+
+                    <span class="w-2 h-2 rounded-full" [class.bg-primary-500]="prodData().quantity > 0"
+                        [class.bg-red-500]="prodData().quantity === 0"></span>
+
+                    {{ prodData().quantity > 0 ? 'In Stock' : 'Out of Stock' }}
+
+                </span>
+
+            </div>
+            <!--Description-->
+            <div class="border-t border-gray-100 pt-5 mb-4">
+                <p class="text-gray-600 leading-relaxed">Material Polyester Blend
+                    {{prodData().description}}n</p>
+            </div>
+            <!--Quantity-->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+                <div class="flex gap-4 items-center">
+                    <div class="flex items-center gap-4 border-2 border-gray-200 rounded-lg overflow-hidden">
+                        <button id="decreaseQuantitiyBtn" (click)="decreaseQuantity()"
+                            class="text-gray-600  hover:bg-gray-100 hover:text-primary-600 p-4 transition disabled:opacity-50">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <input min="1" [max]="maxQuantity()"
+                            class="w-16 text-center border-0 focus:ring-0 focus:outline-none text-lg font-medium p-0"
+                            id="quantity" type="number" [value]="quantity()"
+                            (input)="quantity.update(_ => $any($event.target).valueAsNumber)">
+
+                        <button id="increaseQuantitiyBtn" (click)="increaseQuantity()"
+                            class="text-gray-600  hover:bg-gray-100 hover:text-primary-600 p-4 transition disabled:opacity-50">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                    </div>
+
+                    <span class="text-sm text-gray-500"> {{prodData().quantity}} available</span>
+                </div>
+            </div>
+            <!--Total Price-->
+            <div class="flex items-center justify-between bg-gray-100 rounded-lg p-4 mb-6">
+                <span class="text-gray-600">Total Price:</span>
+                <span class="text-2xl font-bold text-primary-600"> {{this.totalPrice()}} </span>
+            </div>
+            <!--buttons-->
+            <div class="flex flex-col sm:flex-row gap-3 mb-6">
+                <button title="Add To Cart" (click)="addToCart()"
+                    class="flex-1 text-white font-medium bg-primary-600 hover:bg-primary-700 transition flex gap-3 items-center justify-center py-4 px-6 rounded-xl">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Add To Cart
+                </button>
+                @if (inWishListFlag()===true) {
+                <button (click)="deleteItemFromWishlist()" title="Remove From Wish List"
+                    class="flex-1 text-pink-700 font-medium  border-2 border-pink-200  bg-pink-50 flex gap-3 items-center justify-center py-4 px-6 rounded-xl">
+                    <i class="fa-solid fa-heart text-pink-700"></i>
+                    In Wish List
+                </button>
+                }
+                @else{
+                <button (click)="addToWishlist()"
+                    class="flex-1 text-gray-900 hover:text-pink-700 font-medium  border-2 border-gray-300 hover:border-pink-300 transition flex gap-3 items-center justify-center py-4 px-6 rounded-xl">
+                    <i class="fa-regular fa-heart"></i>
+                    Add To WishList
+                </button>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+}

@@ -1,0 +1,82 @@
+<section class="bg-linear-to-r from-violet-600 to-violet-400 text-white">
+
+    <div class="container mx-auto px-6 py-10">
+
+        <!-- Breadcrumb -->
+        <div class="text-sm mb-6 text-violet-100 flex items-center gap-2">
+
+            <a routerLink="/home" class="cursor-pointer hover:text-white">
+                Home
+            </a>
+
+            <span>/</span>
+
+            <span class="text-white font-medium">
+                Brands
+            </span>
+
+        </div>
+
+
+        <!-- Title Row -->
+        <div class="flex items-center gap-4">
+
+            <!-- Icon -->
+            <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-star text-2xl"></i>
+            </div>
+
+
+            <!-- Title + Subtitle -->
+            <div>
+
+                <h1 class="text-3xl font-semibold">
+                    Top Brands
+                </h1>
+
+                <p class="text-violet-100 text-sm mt-1">
+                    Shop from your favorite brands
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="container mx-auto px-4 py-10">
+    <!--Brands Cards-->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
+
+        @for (brand of brandsList()| paginate: { id: 'productsPagination',
+        itemsPerPage: pageSize(),
+        currentPage: currentPage(),
+        totalItems: total() }; track brand._id) {
+        <a class="group bg-white rounded-2xl border border-gray-100 p-4 sm:p-5 shadow-sm hover:shadow-xl hover:border-violet-200 transition-all duration-300 hover:-translate-y-1"
+            [routerLink]="['/brands-filter',brand._id]">
+            <div class="aspect-square rounded-xl overflow-hidden bg-gray-50 mb-3 p-4 flex items-center justify-center">
+                <img [alt]="brand.name"
+                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                    [src]="brand.image">
+            </div>
+            <h3
+                class="font-semibold text-gray-900 text-center text-sm group-hover:text-violet-600 transition-colors truncate">
+                {{brand.name}}</h3>
+            <div class="flex justify-center mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity"><span
+                    class="text-xs text-violet-600 flex items-center gap-1">View Products
+                    <i class="fa-solid fa-arrow-right"></i>
+                </span>
+            </div>
+        </a>
+        }
+
+    </div>
+
+    <div class=" p-3 flex items-center justify-center rounded-xl mt-5">
+        <pagination-controls class="my-pagination" id="productsPagination" (pageChange)="pageChanged($event)"
+            previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </div>
+</section>

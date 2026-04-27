@@ -1,0 +1,5 @@
+<div [routerLink]="['/category-filter',categoryData()._id]" class=" rounded-lg bg-white shadow-sm hover:shadow-md transition duration-300 p-4 flex flex-col justify-center
+    items-center py-8 cursor-pointer">
+    <img class="size-20 rounded-full" [src]="categoryData().image" [alt]="categoryData().name">
+    <h2 class="font-medium">{{categoryData().name}}</h2>
+</div>

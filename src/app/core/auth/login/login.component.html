@@ -1,0 +1,205 @@
+<div class="min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-7xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+
+        <!-- LEFT SIDE -->
+        <div class="hidden lg:flex flex-col items-center justify-center  p-10">
+            <div class="w-full rounded-md shadow-lg overflow-hidden mb-4">
+                <img src="assets/cart.png" class="w-full h-96" alt="Shopping Cart">
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-800 text-center">
+                FreshCart - Your One-Stop Shop for Fresh Products
+            </h2>
+
+            <p class="text-gray-500 text-center mt-4 max-w-md">
+                Join thousands of happy customers who trust FreshCart for their daily grocery needs
+            </p>
+
+            <div class="flex gap-8 mt-6 text-sm text-gray-600">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-truck text-green-600"></i>
+                    <span>Free Delivery</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-green-600"></i>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-headset text-green-600"></i>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+        </div>
+        <!-- RIGHT SIDE -->
+        <div class="p-10 bg-white rounded-2xl shadow-md">
+            <!-- Logo -->
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-bold">
+                    <span class="text-green-600">Fresh</span>Cart
+                </h1>
+                <h2 class="text-4xl font-semibold mt-2 text-gray-800">Welcome Back!</h2>
+                <p class="text-gray-500 text-sm mt-1">
+                    Sign in to continue your fresh shopping experienc
+                </p>
+            </div>
+            <div class="space-y-3 mb-6">
+                <button type="button" (click)="socialLogin('Google')"
+                    class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5 w-5" alt="Google">
+                    Continue with Google
+                </button>
+                <button type="button" (click)="socialLogin('Facebook')"
+                    class="w-full flex items-center justify-center gap-3 px-4 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="h-5 w-5" alt="Facebook">
+                    Continue with Facebook
+                </button>
+            </div>
+
+            <div class="relative flex items-center justify-center mb-6">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="flex-shrink mx-4 text-gray-400 text-xs uppercase tracking-wider">Or continue with
+                    email</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+
+            <!-- Form -->
+            <form class="space-y-5" [formGroup]="loginForm" (ngSubmit)="login()">
+
+
+
+                <!-- Email -->
+                <div>
+                    @let email=loginForm.get('email');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="email" placeholder="Enter your email" formControlName="email"
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':email?.valid&&email?.touched,
+                              'border-danger-strong!':email?.invalid&&email?.touched,
+                            }">
+                    </div>
+
+                    @if (email?.errors && email?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (email?.getError('required')) {
+                            <p>Please confirm your email address</p>
+                            }
+                            @if (email?.getError('email')) {
+                            <p>Invalid Email Address(ex: ziad@gmail.com)</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+
+
+
+                <!-- Password -->
+                <div>
+                    @let password=loginForm.get('password');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Password <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <input [type]="showPassword()?'text':'password'" placeholder="Enter your password"
+                            formControlName="password"
+                            class="w-full pl-10 pr-10 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':password?.valid&&password?.touched,
+                              'border-danger-strong!':password?.invalid&&password?.touched,
+                            }">
+
+                        <button type="button" class="absolute right-3 top-3.5 text-gray-400"
+                            (click)="showPassword.set(!showPassword())">
+                            <i [class]="showPassword() ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                        </button>
+                    </div>
+                    @if (password?.errors && password?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (password?.getError('required')) {
+                            <p>Please enter your password</p>
+                            }
+                            @if (password?.hasError('pattern')) {
+                            @let passwordVal = password?.value ?? '';
+                            @if (passwordVal.length < 8) { <p>Password must be at least 8 characters long</p>
+                                }
+                                @else if (!(/[A-Z]/.test(passwordVal))) { <p>Password must contain at least one
+                                    uppercase letter
+                                </p>
+                                }
+                                @else if (!(/[0-9]/.test(passwordVal))) {
+                                <p>Password must contain at least one number</p>
+                                }
+                                @else if (!(/[!@#$%^&*]/.test(passwordVal))) {
+                                <p>Password must contain at least one special character</p>
+                                }
+                                }
+
+                        </div>
+                    </div>
+                    }
+                </div>
+
+
+                <!--Keep me signed in-->
+                <div>
+                    @let terms=loginForm.get('rememberMe');
+                    <div class="flex items-center gap-2">
+                        <input formControlName="rememberMe" id="rememberMe" class="size-4 accent-primary-600"
+                            type="checkbox" name="rememberMe"><label for="rememberMe" class="ms-2">
+                            Keep me signed in
+                        </label>
+                    </div>
+
+                    @if(terms?.errors && terms?.touched){
+                    <p id="terms-error" class="text-red-500 mt-1 text-sm" role="alert">*You must accept the terms and
+                        conditions</p>
+                    }
+                </div>
+
+                @if (errorMsg()) {
+                <div class="p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft" role="alert">
+                    {{errorMsg()}}
+                </div>
+                }
+
+                @if (successMsg()) {
+                <div class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+                    {{successMsg()}}
+                </div>
+                }
+
+                <!-- Submit -->
+                <button type="submit" [disabled]="loginForm.invalid"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition disabled:bg-primary-300 disabled:cursor-not-allowed disabled:hover:bg-primary-300">
+                    Sign In
+                </button>
+
+
+            </form>
+            <p class="mt-4 text-center text-gray-500 text-sm">
+                Forgot your password? <a routerLink="/forgot-password"
+                    class="text-primary-600 hover:underline">Reset</a>
+            </p>
+            <!-- Footer -->
+
+            <div class="text-center border-t pt-10 border-gray-300/30 my-4 font-medium text-gray-700">
+                New to FreshCart?
+                <a routerLink="/register" class="text-primary-600 font-semibold hover:text-primary-700">Create
+                    an account</a>
+            </div>
+
+        </div>
+    </div>
+</div>

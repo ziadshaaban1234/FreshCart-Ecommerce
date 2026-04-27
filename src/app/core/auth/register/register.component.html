@@ -1,0 +1,316 @@
+<div class="min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-7xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
+
+        <!-- LEFT SIDE -->
+        <div>
+            <h1 class="text-4xl font-bold">Welcome to <span class="text-primary-600">FreshCart</span></h1>
+            <p class="text-xl mt-2 mb-4">Join thousands of happy customers who enjoy fresh groceries delivered right to
+                their doorstep.</p>
+            <ul class="*:flex *:items-start *:gap-4 space-y-6 my-8">
+                <li>
+                    <div
+                        class="icon size-12 text-lg bg-primary-200 text-primary-600 rounded-full flex justify-center items-center">
+                        <i class="fa-solid fa-star text-primary-700"></i>
+                    </div>
+                    <div class="content">
+                        <h2 class="text-lg font-semibold">Premium Quality</h2>
+                        <p class="text-gray-600">Premium quality products sourced from trusted suppliers.</p>
+                    </div>
+                </li>
+                <li>
+                    <div
+                        class="icon size-12 text-lg bg-primary-200 text-primary-600 rounded-full flex justify-center items-center">
+                        <i class="fa-solid fa-truck-fast text-primary-700"></i>
+                    </div>
+                    <div class="content">
+                        <h2 class="text-lg font-semibold">Fast Delivery</h2>
+                        <p class="text-gray-600">Same-day delivery available in most areas</p>
+                    </div>
+                </li>
+                <li>
+                    <div
+                        class="icon size-12 text-lg bg-primary-200 text-primary-600 rounded-full flex justify-center items-center">
+                        <i class="fa-solid fa-shield-halved  text-primary-700"></i>
+                    </div>
+                    <div class="content">
+                        <h2 class="text-lg font-semibold">Secure Shopping</h2>
+                        <p class="text-gray-600">Your data and payments are completely secure</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="review bg-white shadow-sm p-4 rounded-md">
+                <div class="author flex items-center gap-4 mb-4"><img class="size-10 overflow-hidden"
+                        src="assets/woman_user.png" style="color: transparent;">
+                    <div>
+                        <h3>Sarah Johnson</h3>
+                        <div class="rating *:text-yellow-300">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <blockquote>
+                    <p class="italic text-gray-600 font-medium text-[16px]">"FreshCart has transformed my shopping
+                        experience. The quality of
+                        the products is outstanding, and the delivery is always on time. Highly recommend!"</p>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="p-10 bg-white rounded-2xl shadow-md">
+            <!-- Logo -->
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-bold">
+                    <span class="text-green-600">Fresh</span>Cart
+                </h1>
+                <h2 class="text-4xl font-semibold mt-2 text-gray-800">Create Your Account</h2>
+                <p class="text-gray-500 text-sm mt-1">
+                    Register to start your fresh shopping experience
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form class="space-y-5" [formGroup]="registerForm" (ngSubmit)="register()">
+
+                <!-- Name -->
+                <div>
+                    @let name=registerForm.get('name');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="text" placeholder="Enter your full name" formControlName="name"
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':name?.valid&&name?.touched,
+                              'border-danger-strong!':name?.invalid&&name?.touched,
+                            }">
+                    </div>
+                    @if (name?.errors && name?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (name?.getError('required')) {
+                            <p>Please confirm your name</p>
+                            }
+                            @if (name?.getError('minlength')) {
+                            <p>Name is too short: At least 2 characters</p>
+                            }
+                            @if (name?.getError('maxlength')) {
+                            <p>Name is too long: Up to 30 characters only</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <!-- Email -->
+                <div>
+                    @let email=registerForm.get('email');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="email" placeholder="Enter your email" formControlName="email"
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':email?.valid&&email?.touched,
+                              'border-danger-strong!':email?.invalid&&email?.touched,
+                            }">
+                    </div>
+
+                    @if (email?.errors && email?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (email?.getError('required')) {
+                            <p>Please confirm your email address</p>
+                            }
+                            @if (email?.getError('email')) {
+                            <p>Invalid Email Address(ex: ziad@gmail.com)</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    @let phone=registerForm.get('phone');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-phone absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="tel" placeholder="Enter your phone number" formControlName="phone"
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':phone?.valid&&phone?.touched,
+                              'border-danger-strong!':phone?.invalid&&phone?.touched,
+                            }">
+                    </div>
+
+                    @if (phone?.errors && phone?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (phone?.getError('required')) {
+                            <p>Please enter your phone number</p>
+                            }
+                            @if (phone?.getError('pattern')) {
+                            <p>Only Egyptian phone numbers are allowed</p>
+                            }
+
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <!-- Password -->
+                <div>
+                    @let password=registerForm.get('password');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Password <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <input [type]="showPassword()?'text':'password'" placeholder="Enter your password"
+                            formControlName="password"
+                            class="w-full pl-10 pr-10 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':password?.valid&&password?.touched,
+                              'border-danger-strong!':password?.invalid&&password?.touched,
+                            }">
+
+                        <button type="button" class="absolute right-3 top-3.5 text-gray-400"
+                            (click)="showPassword.set(!showPassword())">
+                            <i [class]="showPassword() ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                        </button>
+                    </div>
+                    @if (password?.errors && password?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (password?.getError('required')) {
+                            <p>Please enter your password</p>
+                            }
+                            @if (password?.hasError('pattern')) {
+                            @let passwordVal = password?.value ?? '';
+                            @if (passwordVal.length < 8) { <p>Password must be at least 8 characters long</p>
+                                }
+                                @else if (!(/[A-Z]/.test(passwordVal))) { <p>Password must contain at least one
+                                    uppercase letter
+                                </p>
+                                }
+                                @else if (!(/[0-9]/.test(passwordVal))) {
+                                <p>Password must contain at least one number</p>
+                                }
+                                @else if (!(/[!@#$%^&*]/.test(passwordVal))) {
+                                <p>Password must contain at least one special character</p>
+                                }
+                                }
+
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <!--Confirm password-->
+                <div>
+                    @let rePassword=registerForm.get('rePassword');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                        Confirm Password <span class="text-red-600 font-bold">*</span>
+                    </label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                        <input [type]="showConfirmPassword()?'text':'password'" placeholder="Re-enter your password"
+                            formControlName="rePassword"
+                            class="w-full pl-10 pr-10 py-3 border-2 border-gray-300 rounded-lg ring-0 focus:outline-none"
+                            [class]="{
+                                'border-primary-500!':rePassword?.valid&&rePassword?.touched,
+                              'border-danger-strong!':rePassword?.invalid&&rePassword?.touched,
+                            }">
+                        <button type="button" class="absolute right-3 top-3.5 text-gray-400"
+                            (click)="showConfirmPassword.set(!showConfirmPassword())">
+                            <i [class]="showConfirmPassword() ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                        </button>
+                    </div>
+
+                    @if (registerForm.getError('mismatch') && rePassword?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                        role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (rePassword?.getError('required')) {
+                            <p>Please enter your rePassword</p>
+                            }
+                            @if (registerForm.getError('mismatch') ) {
+                            <p>Re-Password and password must match</p>
+                            }
+`
+                        </div>
+                    </div>
+                    }
+                </div>
+                <!--Terma & condition-->
+               <div>
+                    @let terms=registerForm.get('terms');
+                    <div class="flex items-center gap-2">
+                        <input formControlName="terms" id="terms" class="size-4 accent-primary-600" type="checkbox"
+                            name="terms">
+                        <label for="terms" class="ms-2">
+                            I agree to the
+                            <a class="text-primary-600 hover:underline cursor-pointer" [routerLink]="['/terms-conditions']">Terms of Service</a>
+                            and
+                            <a class="text-primary-600 hover:underline cursor-pointer" [routerLink]="['/privacy-policy']">Privacy Policy</a>
+                            <span class="text-red-600 font-bold"> *</span>
+                        </label>
+                    </div>
+
+                    @if(terms?.errors && terms?.touched){
+                    <p id="terms-error" class="text-red-500 mt-1 text-sm" role="alert">*You must accept the terms and
+                        conditions</p>
+                    }
+                </div>
+
+                @if (errorMsg()) {
+                <div class="p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft" role="alert">
+                    {{errorMsg()}}
+                </div>
+                }
+
+                @if (successMsg()) {
+                <div class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+                    {{successMsg()}}
+                </div>
+                }
+                <!-- Submit -->
+                <button type="submit" [disabled]="registerForm.invalid"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition disabled:bg-primary-300 disabled:cursor-not-allowed disabled:hover:bg-primary-300">
+                    Create Account
+                </button>
+
+
+            </form>
+
+            <!-- Footer -->
+
+            <div class="text-center border-t pt-10 border-gray-300/30 my-4 font-medium text-gray-700">
+                Already have an account?
+                <a routerLink="/login" class="text-primary-600 font-semibold hover:text-primary-700">
+                    Sign in</a>
+            </div>
+
+        </div>
+    </div>
+</div>

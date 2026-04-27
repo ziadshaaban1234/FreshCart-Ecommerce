@@ -1,0 +1,148 @@
+<div class="min-h-screen bg-gray-50/50">
+
+
+    @if (wishProductsList().length!==0) {
+    <!--Header-->
+    <div class="bg-white border border-gray-100">
+        <div class="container mx-auto px-4 py-8">
+
+            <nav class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                <a class="hover:text-pink-600 transition" routerLink="/home">Home</a>
+                <span>/</span>
+                <span class="text-gray-900 font-medium">My Wishlist</span>
+            </nav>
+            <div class="flex items-center gap-3">
+                <div class="bg-pink-600 text-white w-12 h-12 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-heart fa-xl"></i>
+                </div>
+
+                <div>
+                    <h1 class="text-2xl font-semibold">Shopping Cart</h1>
+                    <p class="text-sm text-gray-500">
+                        <span class="text-pink-600 font-medium">{{wishProductsList().length}}
+                            items</span>
+                        saved
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--Products-->
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <!--Tables Titles-->
+            <div
+                class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-100 text-sm font-medium text-gray-500">
+                <div class="col-span-6">Product</div>
+                <div class="col-span-2 text-center">Price</div>
+                <div class="col-span-2 text-center">Status</div>
+                <div class="col-span-2 text-center">Actions</div>
+            </div>
+            <!--Table Content-->
+            <div class="divide-y divide-gray-100">
+                @for (prod of wishProductsList(); track $index) {
+                <!--Item-->
+                <div
+                    class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:px-6 md:py-5 items-center hover:bg-gray-50/50 transition-colors">
+                    <!---->
+                    <div class="md:col-span-6 flex items-center gap-4">
+                        <!--Product Image-->
+                        <a [routerLink]="['/product-details',prod._id]"
+                            class="w-20 h-20 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden shrink-0">
+                            <img [src]="prod.imageCover" [alt]="prod.title" class="w-full h-full object-contain">
+                        </a>
+                        <div>
+                            <a [routerLink]="['/product-details',prod._id]"
+                                class="hover:text-primary-700 transition font-medium text-gray-900">
+                                {{prod.title}}
+                            </a>
+                            <p class="mt-1 text-sm text-gray-400">{{prod.category.slug}}</p>
+                        </div>
+                    </div>
+                    <!--Price-->
+                    <div class="md:col-span-2 flex md:justify-center items-center gap-2">
+                        <p class="md:hidden text-sm text-gray-500">Price: </p>
+                        <div class="text-right md:text-center">
+                            <p class="font-semibold text-gray-900">{{prod.price|currency:' EGP'}} </p>
+                        </div>
+                    </div>
+
+                    <!--Status-->
+                    <div class="md:col-span-2 flex md:justify-center items-center gap-2">
+                        <p class="md:hidden text-sm text-gray-500">Status: </p>
+
+                        @if (checkIfInCart(prod.id)) {
+                        <div
+                            class="flex items-center   gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary-50 text-primary-700">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <p>In Cart</p>
+                        </div>
+                        }
+                        @else if (prod.quantity>0) {
+                        <div
+                            class="flex items-center   gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary-50 text-primary-700">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                            <p>In Stock</p>
+                        </div>
+                        }
+
+                        @else{
+                        <div
+                            class="flex items-center   gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-red-50 text-red-700">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <p>Out Of Stock</p>
+                        </div>
+                        }
+                    </div>
+                    <!--Actions Buttons-->
+                    <div class="md:col-span-2 flex  items-center md:justify-center items-center gap-2">
+                        @if(checkIfInCart(prod.id)){
+                        <a class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all"
+                            routerLink="/cart">
+                            <i class="fa-solid fa-check text-primary-500"></i>
+                            <span class="md:hidden lg:inline">View Cart</span></a>
+                        }
+                        @else {
+                        <button (click)="addToCart(prod)"
+                            class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium bg-primary-100 text-primary-700 hover:bg-primary-200 transition-all"
+                            title="Add">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="md:hidden lg:inline">Add To Cart</span>
+                        </button>
+                        }
+                        <button (click)="deleteItemFromWishlist(prod.id)"
+                            class="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-all disabled:opacity-50"
+                            title="Remove">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+    </div>
+    }
+
+
+    @else{
+    <div class="container mx-auto px-4 py-20">
+        <div class="max-w-sm mx-auto text-center">
+            <div class="w-20 h-20 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-6">
+                <i class="fa-regular fa-heart fa-2xl text-pink-600"></i>
+            </div>
+            <h2 class="text-xl font-bold text-gray-900 mb-2">Your wishlist is empty</h2>
+            <p class="text-gray-500 text-sm mb-6">Browse products and save your favorites here.</p>
+            <div class="flex flex-col gap-3"><a
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-pink-600 text-white font-semibold hover:bg-pink-700 transition-colors"
+                    routerLink="/products">Browse Products
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a></div>
+        </div>
+    </div>
+
+
+    }
+
+</div>

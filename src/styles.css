@@ -1,0 +1,777 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+html,
+body {
+    font-family: "Exo", sans-serif;
+    color: #364153;
+    background-color: white;
+    font-weight: 500;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+button:disabled,
+a:disabled {
+    cursor: not-allowed;
+}
+
+@theme {
+    --color-primary-50: #f0fdf4;
+    --color-primary-100: #dcfce7;
+    --color-primary-200: #bbf7d0;
+    --color-primary-300: #86efac;
+    --color-primary-400: #4ade80;
+    --color-primary-500: #22c55e;
+    --color-primary-600: #16a34a;
+    --color-primary-700: #15803d;
+    --color-primary-800: #14532d;
+    --color-primary-900: #134e28;
+}
+
+/*****************************************/
+
+@media (max-width: 320px) {
+  html {
+    font-size: 10px !important; 
+  }
+  
+  .container, section {
+    padding-left: 5px !important; 
+    padding-right: 5px !important;
+  }
+
+  .swiper-button-next, .swiper-button-prev {
+    width: 18px !important; 
+    height: 18px !important;
+  }
+  .swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 10px !important;
+  }
+
+  i, .fa-solid, .fa-regular, svg {
+    font-size: 0.8em !important; 
+  }
+
+  .ngx-pagination li {
+    font-size: 9px !important; 
+    margin-right: 1px !important;
+  }
+
+  div[class*="backdrop-blur"] {
+    padding: 1.5rem !important;
+    border-radius: 1rem !important;
+  }
+}
+
+@media (max-width: 250px) {
+  html {
+    font-size: 8px !important; 
+  }
+
+  * {
+    letter-spacing: -0.4px !important; 
+  }
+
+  .container, section {
+    padding-left: 3px !important; 
+    padding-right: 3px !important;
+  }
+
+  .swiper-button-next, .swiper-button-prev {
+    width: 14px !important; 
+    height: 14px !important;
+  }
+  .swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 8px !important; 
+  }
+
+  .swiper-pagination-bullet {
+    width: 4px !important; 
+    height: 4px !important;
+  }
+
+  .ngx-pagination .pagination-previous a::before,
+  .ngx-pagination .pagination-next a::after,
+  .ngx-pagination .current span:first-child {
+    display: none !important;
+  }
+
+  div[class*="backdrop-blur"] {
+    padding: 1rem !important;
+    margin: 0 !important;
+  }
+  h1, h2, h3, h4, p, span, a, label {
+    word-break: keep-all !important; 
+    overflow-wrap: break-word !important; 
+  }
+}
+
+@media (max-width: 200px) {
+  html {
+    font-size: 7px !important; 
+  }
+
+  .container, section, div, .row {
+    padding-left: 1px !important; 
+    padding-right: 1px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  h1, h2, h3, h4, p, span, a, label {
+    white-space: normal !important;
+    word-break: keep-all !important; 
+    overflow-wrap: break-word !important;
+    line-height: 1.1 !important;
+  }
+
+  aside, .sidebar, [class*="sidebar"], .overlay-container {
+    width: 30px !important; 
+  }
+
+  .swiper-button-next, .swiper-button-prev {
+    display: flex !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
+  .swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 6px !important;
+  }
+
+  i, svg, .fa-solid, .fa-regular {
+    font-size: 8px !important; 
+  }
+
+  button, input, .btn, .form-control {
+    padding: 1px 3px !important; 
+    font-size: 7px !important; 
+    height: auto !important;
+    min-height: 15px !important;
+  }
+
+  img {
+    max-height: 60px !important; 
+    object-fit: contain !important;
+  }
+
+  div[class*="backdrop-blur"] {
+    padding: 0.5rem !important;
+    border-radius: 0.5rem !important;
+  }
+  div[class*="backdrop-blur"] .grid {
+    display: flex !important;
+    flex-direction: column !important; 
+    gap: 5px !important;
+  }
+
+  body, html {
+    overflow-x: hidden !important;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .swiper-button-next svg, .swiper-button-prev svg, .swiper-navigation-icon {
+    width: 12px !important;
+    height: auto !important;
+  }
+
+  .md\:col-span-8 .w-12 { width: 35px !important; height: 35px !important; }
+  .md\:col-span-8 h2 { font-size: 22px !important; margin-bottom: 10px !important; }
+  
+  .md\:col-span-8 .gap-x-3 { gap: 5px !important; flex-wrap: wrap !important; }
+  .md\:col-span-8 span.px-4 { padding: 4px 8px !important; font-size: 10px !important; }
+  
+  .md\:col-span-8 input, .md\:col-span-8 button { padding: 8px !important; font-size: 12px !important; }
+}
+
+@media (max-width: 250px) {
+  .swiper-button-next svg, .swiper-button-prev svg, .swiper-navigation-icon {
+    width: 8px !important;
+  }
+
+  .md\:col-span-8 .w-12 { width: 25px !important; height: 25px !important; }
+  .md\:col-span-8 .fas.fa-envelope { font-size: 12px !important; }
+  .md\:col-span-8 h2 { font-size: 16px !important; line-height: 1.2 !important; }
+  .md\:col-span-8 p { margin-bottom: 5px !important; font-size: 9px !important; }
+  
+  .md\:col-span-8 span.px-4 { padding: 2px 4px !important; font-size: 8px !important; }
+  
+  .md\:col-span-8 input, .md\:col-span-8 button { padding: 5px !important; font-size: 10px !important; }
+}
+
+@media (max-width: 200px) {
+  .swiper-button-next svg, .swiper-button-prev svg, .swiper-navigation-icon {
+    width: 5px !important;
+  }
+
+  .md\:col-span-8 .mb-6, .md\:col-span-8 .mb-8, .md\:col-span-8 .gap-4 { 
+    margin-bottom: 4px !important; 
+    gap: 3px !important; 
+  }
+  
+  .md\:col-span-8 .w-12 { width: 20px !important; height: 20px !important; }
+  .md\:col-span-8 .fas.fa-envelope { font-size: 10px !important; }
+  
+  .md\:col-span-8 h2 { font-size: 12px !important; }
+  .md\:col-span-8 p, .md\:col-span-8 .text-xs { font-size: 7px !important; }
+  
+  .md\:col-span-8 span.px-4 { flex-direction: column !important; text-align: center !important; }
+  
+  .md\:col-span-8 input, .md\:col-span-8 button { 
+    padding: 2px 4px !important; 
+    font-size: 8px !important; 
+    border-radius: 4px !important; 
+  }
+}
+
+/*********************************/
+
+@media (max-width: 320px) {
+    swiper-container::part(button-prev),
+    swiper-container::part(button-next),
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 16px !important;  
+        height: 16px !important;
+        padding: 0 !important;   
+        background-color: rgba(255, 255, 255, 0.8) !important; 
+    }
+
+    swiper-container::part(button-prev) { left: 2px !important; }
+    swiper-container::part(button-next) { right: 2px !important; }
+
+    swiper-container::part(button-prev) svg,
+    swiper-container::part(button-next) svg,
+    .swiper-navigation-icon {
+        width: 7px !important;
+        height: auto !important;
+    }
+
+    .sliderItem > div {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .md\:col-span-8 {
+        padding: 10px !important; 
+    }
+
+    div[class*="bg-green-600"].w-12.h-12 {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    div[class*="bg-green-600"] i {
+        font-size: 12px !important;
+    }
+
+    .md\:col-span-8 .mb-6, 
+    .md\:col-span-8 .mb-8,
+    .md\:col-span-8 .gap-4,
+    .md\:col-span-8 .gap-x-3 {
+        margin-bottom: 6px !important;
+        gap: 4px !important;
+    }
+
+    .md\:col-span-8 h2 {
+        font-size: 16px !important;
+        line-height: 1.1 !important;
+    }
+    .md\:col-span-8 p {
+        font-size: 10px !important;
+    }
+
+    @media (max-width: 250px) {
+        swiper-container::part(button-prev),
+        swiper-container::part(button-next) {
+            width: 12px !important;
+            height: 12px !important;
+        }
+        
+        .md\:col-span-8 .flex.flex-col.sm\:flex-row.gap-4 {
+            flex-direction: column !important;
+            gap: 4px !important;
+        }
+
+        .md\:col-span-8 input, 
+        .md\:col-span-8 button {
+            padding: 5px !important;
+            font-size: 9px !important;
+            border-radius: 6px !important;
+        }
+
+        .md\:col-span-8 span.px-4 {
+            padding: 1px 4px !important;
+            font-size: 7px !important;
+        }
+    }
+
+    @media (max-width: 200px) {
+        swiper-container::part(button-prev) svg,
+        swiper-container::part(button-next) svg {
+            width: 5px !important;
+        }
+
+        .md\:col-span-8 h2 {
+            font-size: 12px !important;
+        }
+        .md\:col-span-8 p {
+            font-size: 8px !important;
+        }
+        
+        div[class*="bg-green-600"].w-12.h-12 {
+            width: 20px !important;
+            height: 20px !important;
+        }
+    }
+}
+
+/**********************************************/
+
+@media (min-width: 400.01px) and (max-width: 500px) {
+  div[class*="md:col-span-8"] {
+    padding: 1rem !important; 
+  }
+
+  div[class*="md:col-span-8"] .w-12.h-12 {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+
+  div[class*="md:col-span-8"] h2 {
+    font-size: 1.25rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 6px !important;
+  }
+
+  div[class*="md:col-span-8"] p.text-gray-600 {
+    font-size: 0.75rem !important;
+    margin-bottom: 10px !important;
+  }
+
+  div[class*="md:col-span-8"] .flex.flex-row.gap-4 {
+    gap: 6px !important;
+  }
+
+  div[class*="md:col-span-8"] span.px-4 {
+    padding: 2px 6px !important;
+    font-size: 0.7rem !important;
+  }
+
+  div[class*="md:col-span-8"] input, 
+  div[class*="md:col-span-8"] button {
+    padding: 6px !important;
+    font-size: 0.8rem !important;
+    height: 32px !important;
+  }
+}
+
+@media (min-width: 320.00001px) and (max-width: 400px) {
+  div[class*="md:col-span-8"] {
+    padding: 0.3rem !important; 
+  }
+
+  div[class*="md:col-span-8"] .w-12.h-12 {
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+    margin-bottom: 2px !important;
+  }
+  
+  div[class*="md:col-span-8"] .fas.fa-envelope {
+    font-size: 0.6rem !important;
+  }
+
+  div[class*="md:col-span-8"] h2 {
+    font-size: 0.75rem !important; 
+    line-height: 1.0 !important;
+    margin-bottom: 2px !important;
+    letter-spacing: -1px !important; 
+    font-weight: 900 !important;
+  }
+
+  div[class*="md:col-span-8"] p.text-gray-600 {
+    font-size: 0.55rem !important;
+    margin-bottom: 4px !important;
+    line-height: 1.0 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  div[class*="md:col-span-8"] .flex.flex-row.gap-4 {
+    gap: 1.5px !important;
+    justify-content: flex-start !important;
+  }
+
+  div[class*="md:col-span-8"] span.px-4 {
+    padding: 0px 1.5px !important;
+    font-size: 0.5rem !important;
+    letter-spacing: -0.4px !important;
+  }
+
+  div[class*="md:col-span-8"] input, 
+  div[class*="md:col-span-8"] button {
+    padding: 1px 3px !important;
+    font-size: 0.65rem !important;
+    height: 22px !important; 
+    border-radius: 3px !important;
+  }
+
+  div[class*="md:col-span-8"] p.text-xs {
+    font-size: 0.45rem !important;
+    margin-top: 1.5px !important;
+    line-height: 1 !important;
+  }
+}
+/* ======================================================= */
+
+@media (max-width: 200px) {
+
+  aside, .sidebar, [class*="sidebar"] {
+    width: 100% !important; 
+  }
+
+  nav.bg-white {
+    padding: 2px !important;
+  }
+
+  nav li a {
+    padding: 3px 2px !important; 
+    gap: 4px !important; 
+  }
+
+  nav li a div.w-9.h-9 {
+    width: 18px !important; 
+    height: 18px !important;
+  }
+
+  nav li a div.w-9.h-9 i {
+    font-size: 8px !important;
+  }
+
+  nav li a span {
+    font-size: 7px !important;
+    font-weight: 700 !important;
+  }
+
+  nav li a i.fa-chevron-right {
+    display: none !important;
+  }
+}
+/***************************************/
+
+@media (max-width: 500px) {
+    .toast-container .ngx-toastr {
+        width: 250px !important;
+        padding: 12px 12px 12px 40px !important; 
+        background-size: 20px !important; 
+        background-position: 12px center !important; 
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .toast-container .ngx-toastr {
+        width: 200px !important;
+        padding: 10px 10px 10px 32px !important;
+        background-size: 16px !important;
+        background-position: 8px center !important;
+        font-size: 10px !important;
+    }
+}
+
+@media (max-width: 250px) {
+    .toast-container .ngx-toastr {
+        width: 160px !important;
+        padding: 8px 8px 8px 26px !important;
+        background-size: 14px !important;
+        background-position: 6px center !important;
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 200px) {
+    .toast-container .ngx-toastr {
+        width: 120px !important; 
+        padding: 6px 6px 6px 20px !important; 
+        background-size: 10px !important; 
+        background-position: 4px center !important;
+        font-size: 8px !important;
+        border-radius: 4px !important;
+    }
+}
+
+/************************************/
+
+.terms-privacy-container {
+    direction: rtl !important;
+    text-align: right !important;
+    line-height: 1.6 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+@media (max-width: 500px) {
+    .terms-privacy-container { padding: 15px !important; }
+    .terms-privacy-container h1 { font-size: 20px !important; }
+    .terms-privacy-container h2 { font-size: 18px !important; }
+    .terms-privacy-container p, .terms-privacy-container li { font-size: 14px !important; }
+    .terms-privacy-container i, .terms-privacy-container svg { font-size: 16px !important; }
+}
+
+@media (max-width: 400px) {
+    .terms-privacy-container { padding: 10px !important; }
+    .terms-privacy-container h1 { font-size: 18px !important; }
+    .terms-privacy-container h2 { font-size: 16px !important; }
+    .terms-privacy-container p, .terms-privacy-container li { font-size: 12px !important; }
+    .terms-privacy-container i, .terms-privacy-container svg { font-size: 14px !important; }
+}
+
+@media (max-width: 320px) {
+    .terms-privacy-container h1 { font-size: 16px !important; }
+    .terms-privacy-container h2 { font-size: 14px !important; }
+    .terms-privacy-container p, .terms-privacy-container li { font-size: 10px !important; }
+    .terms-privacy-container i, .terms-privacy-container svg { 
+        font-size: 12px !important;
+        margin-left: 5px !important;
+    }
+}
+
+@media (max-width: 250px) {
+    .terms-privacy-container { 
+        padding: 5px !important; 
+        letter-spacing: -0.3px !important; 
+    }
+    .terms-privacy-container h1 { font-size: 14px !important; }
+    .terms-privacy-container h2 { font-size: 12px !important; }
+    .terms-privacy-container p, .terms-privacy-container li { font-size: 9px !important; }
+}
+@media (max-width: 190px) {
+    .terms-privacy-container,
+    app-privacy-policy,
+    app-terms-and-conditions { 
+        padding: 1px !important; 
+        letter-spacing: -0.7px !important; 
+    }
+    
+    .terms-privacy-container h1, app-privacy-policy h1 { font-size: 8px !important; }
+    .terms-privacy-container h2, app-privacy-policy h2 { font-size: 7px !important; }
+    
+    .terms-privacy-container p, 
+    .terms-privacy-container li,
+    app-privacy-policy p,
+    app-privacy-policy li { 
+        font-size: 5px !important; 
+        line-height: 1 !important; 
+    }
+
+    .terms-privacy-container i, 
+    .terms-privacy-container svg,
+    app-privacy-policy i,
+    app-privacy-policy svg { 
+        font-size: 5px !important; 
+    }
+
+    app-privacy-policy .container, 
+    app-privacy-policy div {
+        padding: 1px !important;
+        margin: 0 !important;
+        border-radius: 2px !important;
+    }
+}
+
+/*************************************/
+app-product-details {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+}
+
+@media (max-width: 1024px) {
+    app-product-details .grid {
+        display: block !important; 
+    }
+    
+    app-product-details div[class*="sticky"] {
+        position: static !important;
+    }
+
+    app-product-details .bg-white {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+@media (max-width: 190px) {
+    app-product-details .container {
+        padding: 1px !important;
+        margin: 0 !important;
+    }
+
+    app-product-details h1 {
+        font-size: 8px !important;
+        line-height: 1 !important;
+    }
+
+    app-product-details .text-2xl { font-size: 9px !important; }
+    app-product-details .text-3xl { font-size: 10px !important; }
+
+    app-product-details button, 
+    app-product-details .flex-row {
+        display: block !important;
+        width: 100% !important;
+        padding: 4px !important;
+        font-size: 7px !important;
+    }
+
+    app-product-details .flex-wrap {
+        display: block !important;
+    }
+}
+
+/**********************************/
+app-cart {
+    display: block;
+    width: 100%;
+}
+
+div[class*="fixed inset-0"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px !important;
+    z-index: 9999 !important;
+}
+
+div[class*="fixed inset-0"] div[class*="relative"] {
+    width: 95% !important;
+    max-width: 320px !important; 
+    margin: 0 auto !important;
+    padding: 15px !important;
+    border-radius: 15px !important;
+}
+
+
+@media (max-width: 500px) {
+    app-cart .grid { display: flex !important; flex-direction: column !important; }
+
+    app-cart section .container > div:last-child div[class*="bg-white"] {
+        display: block !important; 
+        padding: 10px !important;
+        overflow: hidden !important;
+    }
+
+    app-cart img { 
+        width: 60px !important; 
+        margin: 0 auto 10px auto !important; 
+        display: block !important; 
+    }
+
+    app-cart .product-name { font-size: 13px !important; text-align: center !important; display: block !important; }
+    app-cart .product-price { font-size: 11px !important; text-align: center !important; display: block !important; }
+
+    app-cart button[class*="text-red-600"] {
+        display: block !important;
+        margin: 10px auto 0 auto !important;
+        width: fit-content !important;
+    }
+}
+
+@media (max-width: 350px) {
+    app-cart h1 { font-size: 12px !important; }
+    
+    app-cart section .container > div:last-child div[class*="bg-white"] {
+        padding: 5px !important;
+    }
+    
+    app-cart img { width: 45px !important; }
+    app-cart .product-name { font-size: 10px !important; }
+    
+    app-cart .quantity-controls {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 5px 0 !important;
+    }
+
+    app-cart button[class*="text-red-600"] {
+        font-size: 11px !important;
+        padding: 2px !important;
+    }
+
+    div[class*="fixed inset-0"] h3 { font-size: 14px !important; }
+    div[class*="fixed inset-0"] p { font-size: 10px !important; }
+}
+@media (max-width: 250px) {
+    app-cart { padding: 4px !important; }
+    app-cart img { width: 40px !important; }
+    app-cart .product-name { font-size: 9px !important; }
+    app-cart .product-price { font-size: 8px !important; }
+    
+    app-cart .quantity-controls button {
+        padding: 2px 5px !important;
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 190px) {
+    app-cart, app-cart .container {
+        padding: 1px !important;
+        letter-spacing: -0.6px !important;
+    }
+
+    app-cart .grid, app-cart .flex-row {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    app-cart div[class*="bg-white"] {
+        padding: 2px !important;
+        margin-bottom: 3px !important;
+        border-radius: 2px !important;
+        overflow: hidden !important; 
+    }
+
+    app-cart h1 { font-size: 8px !important; }
+    app-cart .product-name { font-size: 6px !important; line-height: 1 !important; }
+    app-cart p, app-cart span { font-size: 5px !important; line-height: 0.9 !important; }
+
+    app-cart img { 
+        width: 25px !important; 
+        height: auto !important;
+        margin: 0 auto 2px auto !important; 
+    }
+
+    app-cart button[class*="text-red"], 
+    app-cart i[class*="fa-trash"] {
+        font-size: 6px !important;
+        padding: 1px !important;
+        margin: 0 !important;
+    }
+
+    app-cart div[class*="items-center"] {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 2px !important;
+    }
+    app-cart button {
+        padding: 1px 3px !important;
+        font-size: 5px !important;
+    }
+
+    app-cart .btn-checkout {
+        font-size: 7px !important;
+        padding: 3px !important;
+        width: 100% !important;
+    }
+}

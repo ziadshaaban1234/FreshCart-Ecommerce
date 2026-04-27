@@ -1,0 +1,92 @@
+<!-- title -->
+<section class="bg-linear-to-r from-primary-600 to-primary-400 text-white">
+
+    <div class="container mx-auto px-6 py-10">
+
+        <!-- Breadcrumb -->
+        <div class="text-sm mb-6 text-primary-100 flex items-center gap-2">
+
+            <a routerLink="/home" class="cursor-pointer hover:text-white">
+                Home
+            </a>
+
+            <span>/</span>
+
+            <a routerLink="/brands" class="cursor-pointer hover:text-white">
+                Brands
+            </a>
+
+            <span>/</span>
+            <span routerLink="/brands" class="text-white font-medium">
+                {{currentBrand().name}}
+            </span>
+        </div>
+
+
+        <!-- Title Row -->
+        <div class="flex items-center gap-4">
+
+            <!-- Icon -->
+            <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center">
+
+                <img [src]="currentBrand().image" [alt]="currentBrand().name" class="w-10 h-10 object-contain">
+
+            </div>
+
+
+            <!-- Title + Subtitle -->
+            <div>
+
+                <h1 class="text-3xl font-semibold">
+                    {{currentBrand().name}}
+                </h1>
+
+                <p class="text-primary-100 text-sm mt-1">
+                    Shop {{currentBrand().name}} products
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="container mx-auto px-6 py-10">
+    <div class="mb-6 text-sm text-gray-500">Showing {{productList().length}} products</div>
+    <!--Products
+        Loop on product card
+        -->
+
+    @if (productList().length>0) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        @for (prod of productList()| paginate: { id: 'productsPagination',
+        itemsPerPage: pageSize(),
+        currentPage: currentPage(),
+        totalItems: total() }; track prod._id) {
+        <app-product-card [product]="prod" [wishListDetails]="wishListDetails()"></app-product-card>
+        }
+    </div>
+    <div class=" p-3 flex items-center justify-center rounded-xl mt-5">
+        <pagination-controls class="my-pagination" id="productsPagination" (pageChange)="pageChanged($event)"
+            previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination"
+            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+    </div>
+    }
+    @else{
+    <div class="text-center py-20">
+        <div class="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-box-open text-3xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2">No Products Found</h3>
+        <p class="text-gray-500 mb-6">No products match your current filters.</p><a
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors"
+            routerLink="/shop">View All Products</a>
+    </div>
+    }
+
+
+</section>

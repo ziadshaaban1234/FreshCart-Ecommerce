@@ -1,0 +1,321 @@
+<section class="px-6 py-10">
+
+    <div class="container mx-auto">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+
+            <div class="flex items-center gap-3">
+
+                <div class="bg-green-600 text-white w-10 h-10 rounded-lg flex items-center justify-center">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+
+                <div>
+                    <h1 class="text-2xl font-semibold">
+                        Complete Your Order
+                    </h1>
+
+                    <p class="text-sm text-gray-500">
+                        Review your items and complete your purchase
+                    </p>
+                </div>
+
+            </div>
+
+            <a class="text-green-600 cursor-pointer hover:text-green-800 flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Cart
+            </a>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!--Left Side-->
+
+            <!-- Shipping Address Card -->
+            <div class="bg-white rounded-xl shadow overflow-hidden w-3/4 mx-auto lg:col-span-2 space-y-6">
+
+                <!-- Header -->
+                <div class="bg-green-700 text-white p-5">
+
+                    <h3 class="font-semibold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i>
+                        Shipping Address
+                    </h3>
+
+                    <p class="text-sm opacity-80">
+                        Where should we deliver your order?
+                    </p>
+
+                </div>
+
+
+                <div class="p-6 space-y-6">
+
+
+                    <form [formGroup]="checkoutForm" class="space-y-6">
+                        <!-- City -->
+                        @let city=checkoutForm?.get('city');
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                City <span class="text-red-500">*</span>
+                            </label>
+
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-lg px-4 py-3 
+              focus-within:border-green-600 focus-within:ring-1 focus-within:ring-green-600">
+
+                                <i class="fa-solid fa-city text-gray-400"></i>
+
+                                <input type="text" placeholder="e.g. Cairo, Alexandria, Giza" formControlName="city"
+                                    class="w-full outline-none border-none text-sm focus:outline-none focus:border-none focus:ring-0 placeholder:text-gray-400" />
+
+                            </div>
+
+
+                            @if (city?.invalid && (city?.touched || city?.dirty)) {
+                            <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                                role="alert">
+                                <i class="fa-solid fa-circle-xmark me-1"></i>
+                                <div>
+                                    @if (city?.getError('required')) {
+                                    <p>Please enter your city</p>
+                                    }
+                                    @if (city?.getError('minlength')) {
+                                    <p>Minumum Length is 3 characters</p>
+                                    }
+
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+
+                        <!-- Street Address -->
+                        @let details=checkoutForm?.get('details');
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                Street Address <span class="text-red-500">*</span>
+                            </label>
+
+                            <div class="flex items-start gap-3 border border-gray-200 rounded-lg px-4 py-3
+              focus-within:border-green-600 focus-within:ring-1 focus-within:ring-green-600">
+
+                                <i class="fa-solid fa-location-dot text-gray-400 mt-1"></i>
+
+                                <textarea rows="3" placeholder="Street name, building number, floor, apartment..."
+                                    formControlName="details"
+                                    class="w-full outline-none border-none text-sm focus:outline-none focus:border-none focus:ring-0 resize-none  placeholder:text-gray-400"></textarea>
+
+                            </div>
+                            @if (details?.invalid && (details?.touched || details?.dirty)) {
+                            <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                                role="alert">
+                                <i class="fa-solid fa-circle-xmark me-1"></i>
+                                <div>
+                                    @if (details?.getError('required')) {
+                                    <p>Please enter your Street number (Address details)</p>
+                                    }
+                                    @if (details?.getError('minlength')) {
+                                    <p>Minumum Length is 10 characters</p>
+                                    }
+
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+
+                        <!-- Phone -->
+                        @let phone=checkoutForm?.get('phone');
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                Phone Number <span class="text-red-500">*</span>
+                            </label>
+
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-lg px-4 py-3
+              focus-within:border-green-600 focus-within:ring-1 focus-within:ring-green-600">
+
+                                <i class="fa-solid fa-phone text-gray-400"></i>
+
+                                <input type="text" placeholder="01xxxxxxxxx" formControlName="phone"
+                                    class="w-full outline-none border-none text-sm focus:outline-none focus:border-none focus:ring-0  placeholder:text-gray-400" />
+
+                            </div>
+
+                            <p class="text-xs text-gray-400 mt-1">
+                                Egyptian numbers only
+                            </p>
+
+                            @if (phone?.invalid && (phone?.touched || phone?.dirty)) {
+                            <div class="flex items-center p-4 mt-2 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+                                role="alert">
+                                <i class="fa-solid fa-circle-xmark me-1"></i>
+                                <div>
+                                    @if (phone?.getError('required')) {
+                                    <p>Please enter your phone number</p>
+                                    }
+                                    @if (phone?.getError('pattern')) {
+                                    <p>Only Egyptian phone numbers are allowed</p>
+                                    }
+
+                                </div>
+                            </div>
+                            }
+
+                        </div>
+                    </form>
+
+                    <!-- Payment Methods -->
+                    <div class="grid grid-cols-2 gap-4">
+
+                        <!-- Cash On Delivery -->
+                        <button (click)="payWithVisaFlag.set(false)" class="relative p-5 flex  items-center gap-4 border border-green-600 rounded-xl
+        text-green-700 cursor-pointer hover:bg-green-50" [class.border-green-600]="payWithVisaFlag()"
+                            [class.border-gray-300]="!payWithVisaFlag()">
+
+                            <div class="w-10 h-10 bg-green-600 text-white rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-money-bill"></i>
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="font-semibold text-sm">
+                                    Cash on Delivery
+                                </p>
+
+                                <p class="text-xs text-gray-500">
+                                    Pay when it arrives
+                                </p>
+                            </div>
+                            <!-- arrow indicator -->
+                            @if (payWithVisaFlag()===false) {
+                            <div
+                                class="w-7 h-7 rounded-full flex items-center justify-center transition-all bg-primary-600 text-white">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            }
+                            @else{
+                            <div
+                                class="w-7 h-7 rounded-full flex items-center justify-center transition-all border-2 border-gray-400 text-white">
+                            </div>
+                            }
+                        </button>
+
+
+                        <!-- Pay with Visa -->
+
+                        <button (click)="payWithVisaFlag.set(true) " class="relative p-5 flex  items-center gap-4 border rounded-xl
+        text-green-700 cursor-pointer hover:bg-green-50" [class.border-green-600]="payWithVisaFlag()"
+                            [class.border-gray-300]="!payWithVisaFlag()">
+
+                            <div class="w-10 h-10 bg-green-600 text-white rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="font-semibold text-sm">
+                                    Pay with Visa
+                                </p>
+
+                                <p class="text-xs text-gray-500">
+                                    Secure online payment
+                                </p>
+                            </div>
+                            <!-- arrow indicator -->
+                            @if (payWithVisaFlag()) {
+                            <div
+                                class="w-7 h-7 rounded-full flex items-center justify-center transition-all bg-primary-600 text-white">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            }
+                            @else{
+                            <div
+                                class="w-7 h-7 rounded-full flex items-center justify-center transition-all border-2 border-gray-400 text-white">
+                            </div>
+                            }
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!--======================================================================================================-->
+            <!-- RIGHT SIDE (Order Summary) -->
+            <div class="bg-white rounded-xl lg:col-span-1 shadow overflow-hidden h-fit">
+                <!-- Header -->
+                <div class="bg-gray-900 text-white p-5">
+
+                    <h3 class="font-semibold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        Order Summary
+                    </h3>
+
+                    <p class="text-sm opacity-80">
+                        {{cartDetails().numOfCartItems}} items in your cart
+                    </p>
+
+                </div>
+
+                <div class="p-5 space-y-4">
+                    <!--Cart Products-->
+                    <div class="space-y-3 max-h-56 overflow-y-auto mb-5 pr-1">
+                        @for (cartProd of cartDetails().data?.products; track cartProd.product.id) {
+                        <div
+                            class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+                            <div class="w-14 h-14 rounded-lg bg-white p-1 border border-gray-100 shrink-0"><img
+                                    [alt]="cartProd.product.title" class="w-full h-full object-contain"
+                                    [src]="cartProd.product.imageCover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate">{{cartProd.product.title}}</p>
+                                <p class="text-xs text-gray-500 mt-0.5">{{cartProd.count}} × {{cartProd.price}} EGP</p>
+                            </div>
+                            <p class="text-sm font-bold text-gray-900 shrink-0">{{cartProd.count * cartProd.price}}</p>
+                        </div>
+                        }
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>Subtotal</span>
+                        <span class="font-semibold">{{totalPrice()}} EGP</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600 pb-3">
+                        <span>Shipping</span>
+                        @if(hasFreeShipping()){
+                        <span class="font-semibold text-primary-700">FREE</span>
+                        }
+                        @else { <span class="font-semibold text-primary-700">{{shippingCost()}} EGP</span>}
+                    </div>
+
+                    <div class="flex justify-between font-semibold text-lg border-t border-gray-300 pt-6">
+                        <span>Total</span>
+                        <span>{{totalPriceWithShipping()}} EGP</span>
+                    </div>
+                    <!-- Checkout -->
+                    @if (payWithVisaFlag()==true) {
+                    <button (click)=" checkoutSession()"
+                        class="w-full cursor-pointer bg-primary-700 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition hover:bg-primary-800 hover:text-white">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Procces To Payment
+                    </button>
+                    }
+                    @else { <button (click)="payCash()"
+                        class="w-full cursor-pointer bg-primary-700 text-white py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition hover:bg-primary-800 hover:text-white">
+                        <i class="fa-solid fa-wallet"></i>
+                        Place Order
+                    </button>}
+
+                    <!-- Bottom -->
+                    <div class="text-xs text-gray-400 flex justify-center gap-6 mt-3">
+                        <span>
+                            <i class="fa-solid fa-shield-halved text-primary-600 mr-1"></i>
+                            Secure Payment
+                        </span>
+                        <span>
+                            <i class="fa-solid fa-truck text-blue-500 mr-1"></i>
+                            Fast Delivery
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

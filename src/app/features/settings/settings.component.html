@@ -1,0 +1,256 @@
+<div class="space-y-6">
+    <div class="mb-6">
+        <h2 class="text-xl font-bold text-gray-900">Account Settings</h2>
+        <p class="text-gray-500 text-sm mt-1">Update your profile information and change your password</p>
+    </div>
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="p-6 sm:p-8 border-b border-gray-100">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-primary-100 flex items-center justify-center">
+                    <i class="fa-solid fa-user text-2xl text-primary-600"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900">Profile Information</h3>
+                    <p class="text-sm text-gray-500">Update your personal details</p>
+                </div>
+            </div>
+            <form class="space-y-5" [formGroup]="changeUserDataForm" (ngSubmit)="updateUserData()">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input placeholder="Enter your name" formControlName="name"
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 ring-0 focus:outline-none outline-none transition-all"
+                        required="" type="text">
+
+                    @let nameControl = changeUserDataForm.get('name');
+                    @if (nameControl?.errors && nameControl?.touched) {
+                    <p class="text-red-500 text-xs mt-1">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                        name is required
+                    </p>}
+                </div>
+
+                <div>
+                    @let emailControl=changeUserDataForm.get('email');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input placeholder="Enter your email" formControlName="email"
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 ring-0 focus:outline-none outline-none transition-all"
+                        required="" type="email">
+
+                    @if (emailControl?.errors && emailControl?.touched) {
+
+                    @if (emailControl?.getError('required')) {
+
+                    <p class="text-red-500 text-xs mt-1">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                        Please enter your email address
+                    </p>
+                    }
+                    @if (emailControl?.getError('email')) {
+
+                    <p class="text-red-500 text-xs mt-1">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                        Invalid Email Address(ex: ziadshaaban@gmail.com)
+                    </p>
+                    }
+                    }
+                </div>
+                <div>
+                    @let phoneControl=changeUserDataForm.get('phone');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <input placeholder="01xxxxxxxxx" formControlName="phone"
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 ring-0 focus:outline-none outline-none transition-all"
+                        required="" type="tel">
+
+
+                    @if (phoneControl?.errors && phoneControl?.touched) {
+
+                    @if (phoneControl?.getError('required')) {
+
+                    <p class="text-red-500 text-xs mt-1">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                        Please enter your phone number
+                    </p>
+                    }
+                    @if (phoneControl?.getError('pattern')) {
+
+                    <p class="text-red-500 text-xs mt-1">
+                        <i class="fa-solid fa-circle-exclamation mr-1"></i>
+                        Only Egyptian phone numbers are allowed
+                    </p>
+                    }
+
+
+                    }
+                </div>
+                <div class=" pt-4">
+                    <button type="submit"
+                        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors disabled:opacity-50 shadow-lg shadow-primary-600/25">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Save Changes
+                    </button>
+                </div>
+
+                @if (updateInfoErrorMsg()!='') {
+                <div class="p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft" role="alert">
+                    {{updateInfoErrorMsg()}}
+                </div>
+                }
+            </form>
+        </div>
+        <div class="p-6 sm:p-8 bg-gray-50">
+            <h3 class="font-bold text-gray-900 mb-4">Account Information</h3>
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center justify-between"><span class="text-gray-500">User ID</span><span
+                        class="font-mono text-gray-700">{{userId()}}</span></div>
+                <div class="flex items-center justify-between"><span class="text-gray-500">Role</span><span
+                        class="px-3 py-1 rounded-lg bg-primary-100 text-primary-700 font-medium capitalize">user</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Change Password-->
+
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="p-6 sm:p-8">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-amber-100 flex items-center justify-center">
+                    <i class="fa-solid fa-lock text-2xl text-amber-600"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-900">Change Password</h3>
+                    <p class="text-sm text-gray-500">Update your account password</p>
+                </div>
+            </div>
+            <form class="space-y-5" [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                <!--Current Password-->
+                <div>
+                    @let currentPassword=changePasswordForm.get('currentPassword');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                    <div class="relative">
+                        <input placeholder="Enter your current password" formControlName="currentPassword"
+                            class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all"
+                            required="" [type]="showCurrentPassword()?'text':'password'"
+                            placeholder="Enter your password" formControlName="currentPassword" value="" [class]="{
+                                'border-primary-500!':currentPassword?.valid&&currentPassword?.touched,
+                              'border-danger-strong!':currentPassword?.invalid&&currentPassword?.touched,
+                            }">
+                        <button type="button" (click)="showCurrentPassword.set(!showCurrentPassword())"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            <i [class]="showCurrentPassword() ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                        </button>
+                    </div>
+
+                    @if (currentPassword?.errors && currentPassword?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-danger-strong rounded-base" role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (currentPassword?.getError('required')) {
+                            <p>Please enter your current password</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+
+
+                <!--New Password-->
+                <div>
+                    @let newPassword=changePasswordForm.get('password');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                    <div class="relative">
+                        <input placeholder="Enter your new password" formControlName="password"
+                            class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:border-primary-500 ring-0 focus:outline-none outline-none transition-all"
+                            required="" minlength="8" [type]="showNewPassword()?'text':'password'"
+                            placeholder="Enter your password" formControlName="password" value="" [class]="{
+                                'border-primary-500!':newPassword?.valid&&newPassword?.touched,
+                              'border-danger-strong!':newPassword?.invalid&&newPassword?.touched,
+                            }">
+                        <button type="button" (click)="showNewPassword.set(!showNewPassword())"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            <i [class]="showNewPassword() ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                        </button>
+
+
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">Must be at least 8 characters</p>
+
+                    @if (newPassword?.errors && newPassword?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-danger-strong rounded-base " role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (newPassword?.getError('required')) {
+                            <p>Please enter your newPassword</p>
+                            }
+                            @if (newPassword?.hasError('pattern')) {
+                            @let newPasswordVal = newPassword?.value ?? '';
+                            @if (newPasswordVal.length < 8) { <p>Password must be at least 8 characters long</p>
+                                }
+                                @else if (!(/[A-Z]/.test(newPasswordVal))) { <p>Password must contain at least one
+                                    uppercase letter
+                                </p>
+                                }
+                                @else if (!(/[0-9]/.test(newPasswordVal))) {
+                                <p>Password must contain at least one number</p>
+                                }
+                                @else if (!(/[!@#$%^&*]/.test(newPasswordVal))) {
+                                <p>Password must contain at least one special character</p>
+                                }
+                                }
+
+                        </div>
+                    </div>
+                    }
+
+
+                </div>
+
+
+                <!--Confirm Password-->
+                <div>
+                    @let rePassword=changePasswordForm.get('rePassword');
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+                    <div class="relative">
+                        <input placeholder="Confirm your new password" formControlName="rePassword"
+                            class="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 focus:border-primary-500 ring-0 focus:outline-none outline-none transition-all"
+                            required="" [type]="showRePassword()?'text':'password'" placeholder="Enter your password"
+                            value="" [class]="{
+                                'border-primary-500!':rePassword?.valid&&rePassword?.touched,
+                              'border-danger-strong!':changePasswordForm.getError('mismatch')&&rePassword?.touched,
+                            }">
+                        <button type="button" (click)="showRePassword.set(!showRePassword())"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            <i [class]="showRePassword() ? 'fa-regular fa-eye' : 'fa-regular fa-eye-slash'"></i>
+                        </button>
+                    </div>
+
+                    @if (changePasswordForm.getError('mismatch') && rePassword?.touched) {
+                    <div class="flex items-center p-4 mt-2 mb-4 text-sm text-danger-strong rounded-base " role="alert">
+                        <i class="fa-solid fa-circle-xmark me-1"></i>
+                        <div>
+                            @if (rePassword?.getError('required')) {
+                            <p>Please enter your rePassword</p>
+                            }
+                            @if (changePasswordForm.getError('mismatch') ) {
+                            <p>Re-Password and password must match</p>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="pt-4">
+                    <button type="submit" [disabled]="changePasswordForm.invalid"
+                        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-600 text-white font-semibold hover:bg-amber-700 transition-colors disabled:opacity-50 shadow-lg shadow-amber-600/25 disabled:hover:bg-amber-600">
+                        <i class="fa-solid fa-lock"></i>
+                        Change Password
+                    </button>
+                </div>
+            </form>
+            @if (errorMsg()) {
+            <div class="p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft" role="alert">
+                {{errorMsg()}}
+            </div>
+            }
+        </div>
+    </div>
+</div>

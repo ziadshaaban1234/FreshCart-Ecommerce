@@ -1,0 +1,32 @@
+.sliderItem {
+   
+    background-size: cover;
+    background-position: center;
+}
+
+:host {
+    --swiper-pagination-color: white;
+    --swiper-pagination-bullet-size: 12px;
+    --swiper-pagination-bullet-inactive-color: #ffffff80;
+    --swiper-pagination-bullet-inactive-opacity: 1;
+
+    --swiper-navigation-size: 20px;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+    background-color: white;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    color: var(--color-primary-900);
+    padding: 14px;
+}
+
+swiper-container::part(bullet-active) {
+    background-color: white;
+    border-radius: 6px;
+    width: 32px;
+    height: 12px;
+    transition: all 0.3s;
+}

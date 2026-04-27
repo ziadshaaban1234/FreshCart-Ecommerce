@@ -1,0 +1,166 @@
+<div class="bg-primary-50 border-y border-primary-100">
+    <div class="container mx-auto px-4 py-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-truck-moving text-primary-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-gray-900 text-sm ">Free Shipping</h4>
+                    <p class="text-gray-500 text-xs">On orders over 500 EGP</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-arrow-rotate-left text-primary-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-gray-900 text-sm ">Easy Returns</h4>
+                    <p class="text-gray-500 text-xs">14-day return policy</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0"><i
+                        class="fa-solid fa-shield-halved text-primary-600"></i></div>
+                <div>
+                    <h4 class="text-gray-900 text-sm ">Secure Payment</h4>
+                    <p class="text-gray-500 text-xs">100% secure checkout</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-headset text-primary-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-gray-900 text-sm ">24/7 Support</h4>
+                    <p class="text-gray-500 text-xs">Contact us anytime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-slate-900 text-gray-300 pt-16 pb-8 ">
+    <div class="max-w-screen-xl mx-auto px-6 grid grid-cols-1 md:grid-cols-6 gap-10">
+
+        <!-- Logo + About -->
+        <div class="md:col-span-2 space-y-6">
+            <div class="bg-white flex items-center gap-2 justify-start w-fit py-3 px-6 rounded">
+                <img src="images/logo.png" class="h-8 w-full" alt="FreshCart">
+                <p class="text-2xl text-gray-600 font-bold">FreshCart</p>
+            </div>
+
+            <p class="text-sm leading-6 text-gray-400">
+                FreshCart is your one-stop destination for quality products.
+                From fashion to electronics, we bring you the best brands at
+                competitive prices with a seamless shopping experience.
+            </p>
+
+            <!-- Contact Info -->
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-phone text-primary-500"></i>
+                    <span>+1 (800) 123-4567</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-envelope text-primary-500"></i>
+                    <span>support@freshcart.com</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot text-primary-500"></i>
+                    <span>123 Commerce Street, New York, NY 10001</span>
+                </div>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex gap-3 items-center  pt-4">
+                <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary-600 transition cursor-pointer">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary-600 transition cursor-pointer">
+                    <i class="fa-brands fa-twitter"></i>
+                </div>
+                <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary-600 transition cursor-pointer">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary-600 transition cursor-pointer">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop -->
+        <div>
+            <h3 class="text-white font-semibold mb-4">Shop</h3>
+            <ul class="space-y-3 text-sm">
+                <li><a routerLink="/shop" class="hover:text-primary-500 cursor-pointer">All Products</a></li>
+                <li><a routerLink="/shop" class="hover:text-primary-500 cursor-pointer">Categories</a></li>
+                <li><a routerLink="/brands" class="hover:text-primary-500 cursor-pointer">Brands</a></li>
+                <li><a [routerLink]="['/category-filter','6439d2d167d9aa4ca970649f']"
+                        class="hover:text-primary-500 cursor-pointer">Electronics</a></li>
+                <li><a [routerLink]="['/category-filter','6439d5b90049ad0b52b90048']"
+                        class="hover:text-primary-500 cursor-pointer">Men's Fashion</a></li>
+                <li><a [routerLink]="['/category-filter','6439d58a0049ad0b52b9003f']"
+                        class="hover:text-primary-500 cursor-pointer">Women's Fashion</a></li>
+            </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+            <h3 class="text-white font-semibold mb-4">Account</h3>
+            <ul class="space-y-3 text-sm">
+                <li><a routerLink="/profile" class="hover:text-primary-500 cursor-pointer">My Account</a></li>
+                <li><a routerLink="/allorders" class="hover:text-primary-500 cursor-pointer">Order History</a></li>
+                <li><a routerLink="/wishlist" class="hover:text-primary-500 cursor-pointer">Wishlist</a></li>
+                <li><a routerLink="/cart" class="hover:text-primary-500 cursor-pointer">Shopping Cart</a></li>
+                <li><a routerLink="/login" class="hover:text-primary-500 cursor-pointer">Sign In</a></li>
+                <li><a routerLink="/register" class="hover:text-primary-500 cursor-pointer">Create Account</a></li>
+            </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+            <h3 class="text-white font-semibold mb-4">Support</h3>
+            <ul class="space-y-3 text-sm">
+                <li><a routerLink="/support" class="hover:text-primary-500 cursor-pointer">Contact Us</a></li>
+                <li><a routerLink="/help" class="hover:text-primary-500 cursor-pointer">Help Center</a></li>
+                <li><a routerLink="/help" class="hover:text-primary-500 cursor-pointer">Shipping Info</a></li>
+                <li><a routerLink="/help" class="hover:text-primary-500 cursor-pointer">Returns & Refunds</a></li>
+                <li><a routerLink="/help" class="hover:text-primary-500 cursor-pointer">Track Order</a></li>
+            </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+            <h3 class="text-white font-semibold mb-4">Legal</h3>
+            <ul class="space-y-3 text-sm">
+                <li><a routerLink="/privacy-policy" class="hover:text-primary-500 cursor-pointer">Privacy Policy</a>
+                </li>
+                <li><a routerLink="/terms-conditions" class="hover:text-primary-500 cursor-pointer">Terms of Service</a>
+                </li>
+                <li><a class="hover:text-primary-500 cursor-pointer">Cookie Policy</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-slate-800 mt-12 pt-6">
+        <div
+            class="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4">
+
+            <p>© 2026 FreshCart. All rights reserved.</p>
+
+            <div class="flex gap-6 text-lg">
+                <i href="https://www.visa.com/en-us" class="fa-brands fa-cc-visa"></i>
+                <i href="https://www.mastercard.com/global/en.html" class="fa-brands fa-cc-mastercard"></i>
+                <i href="https://www.paypal.com/eg/home" class="fa-brands fa-cc-paypal"></i>
+            </div>
+
+        </div>
+    </div>
+</footer>

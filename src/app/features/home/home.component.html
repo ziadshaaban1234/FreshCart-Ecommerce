@@ -1,0 +1,418 @@
+<!--========================================================================-->
+<!--slider-->
+
+
+<swiper-container class="mySwiper" navigation="true" [pagination]="{'clickable':true}">
+    <swiper-slide>
+        <div class="h-100 flex items-center sliderItem"
+            [style.background-image]="'linear-gradient(to right, #00c758e6, #05df7280), url(assets/supermarket-veg.png)'"
+            style="background-size: cover; background-position: center;">
+            <div class="w-full px-20 text-white space-y-4">
+                <h2 class="text-white text-3xl font-bold mb-4 max-w-96">Fresh
+                    Products Delivered to your Door</h2>
+                <p>Get 20% off your first order</p>
+                <div class="mt-4 flex items-center gap-2">
+                    <button routerLink="/shop"
+                        class="bg-white border-2 border-white/50 text-green-500 px-6 py-2 rounded-lg font-semibold hover:scale-105">Shop
+                        Now</button>
+                    <button routerLink="/deals"
+                        class="bg-transparent border-2 border-white/50 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105">View
+                        Deals</button>
+                </div>
+            </div>
+        </div>
+    </swiper-slide>
+    <swiper-slide>
+        <div class="h-100 flex items-center sliderItem"
+            [style.background-image]="'linear-gradient(to right, #00c758e6, #05df7280), url(assets/supermarket-veg.png)'"
+            style="background-size: cover; background-position: center;">
+            <div class="w-full px-20 text-white space-y-4">
+                <h2 class="text-white text-3xl font-bold mb-4 max-w-96">Premium Quality Guaranteedr</h2>
+                <p>Fresh from farm to your table</p>
+                <div class="mt-4 flex items-center gap-2">
+                    <button routerLink="/shop"
+                        class="bg-white border-2 border-white/50 text-green-500 px-6 py-2 rounded-lg font-semibold hover:scale-105">Shop
+                        Now</button>
+                    <button routerLink="/support"
+                        class="bg-transparent border-2 border-white/50 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105">Learn
+                        more</button>
+                </div>
+            </div>
+        </div>
+    </swiper-slide>
+    <swiper-slide>
+        <div class="h-100 flex items-center sliderItem"
+            [style.background-image]="'linear-gradient(to right, #00c758e6, #05df7280), url(assets/supermarket-veg.png)'"
+            style="background-size: cover; background-position: center;">
+            <div class="w-full px-20 text-white space-y-4">
+                <h2 class="text-white text-3xl font-bold mb-4 max-w-96">Fast & Free Delivery</h2>
+                <p>Same day delivery available </p>
+                <div class="mt-4 flex items-center gap-2">
+                    <button routerLink="/shop"
+                        class="bg-white border-2 border-white/50 text-green-500 px-6 py-2 rounded-lg font-semibold hover:scale-105">Order
+                        Now</button>
+                    <button routerLink="/support"
+                        class="bg-transparent border-2 border-white/50 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105">Delivery
+                        Info</button>
+                </div>
+            </div>
+        </div>
+    </swiper-slide>
+
+</swiper-container>
+
+<!-- 1 Slide
+    <div class="h-100 flex items-center sliderItem ">
+        <div class="w-full px-20 text-white space-y-4">
+            <h2 class="text-white text-3xl font-bold mb-4 max-w-96">Fresh
+                Products Delivered to your Door</h2>
+            <p>Get 20% off your first order</p>
+            <div class="mt-4 flex items-center gap-2">
+                <button
+                    class="bg-white border-2 border-white/50 text-green-500 px-6 py-2 rounded-lg font-semibold hover:scale-105">Shop
+                    Now</button>
+                <button routerLink="/deals"
+                    class="bg-transparent border-2 border-white/50 text-white px-6 py-2 rounded-lg font-semibold hover:scale-105">View
+                    Deals</button>
+            </div>
+        </div>
+    </div> -->
+
+<!--========================================================================-->
+<div class="container mx-auto px-4">
+
+    <!-- Benefits Section :- -->
+    <section class="bg-gray-50 py-10 ">
+        <div class=" px-6 container mx-auto">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Free Shipping -->
+                <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm  hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-truck text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Free Shipping</h4>
+                        <p class="text-sm text-gray-500">On orders over 500 EGP</p>
+                    </div>
+                </div>
+
+                <!-- Secure Payment -->
+                <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm  hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-green-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Secure Payment</h4>
+                        <p class="text-sm text-gray-500">100% secure transactions</p>
+                    </div>
+                </div>
+
+                <!-- Easy Returns -->
+                <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm  hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                        <i class="fas fa-rotate-left text-orange-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Easy Returns</h4>
+                        <p class="text-sm text-gray-500">14-day return policy</p>
+                    </div>
+                </div>
+
+                <!-- 24/7 Support -->
+                <div class="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm  hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-headset text-purple-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">24/7 Support</h4>
+                        <p class="text-sm text-gray-500">Dedicated support team</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!--========================================================================-->
+
+    <!--Shop by category-->
+    <section>
+        <!-- title -->
+        <div class="flex items-center gap-3 my-8">
+            <div class="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full"></div>
+            <h2 class="text-3xl font-bold text-gray-800">Shop By <span class="text-emerald-600">Categpry</span></h2>
+        </div>
+        <!--Categories
+        Loop on category card
+        -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            @for (category of categoriesList(); track category._id) {
+            <app-category-card [categoryData]="category"></app-category-card>
+            }
+        </div>
+    </section>
+    <!--========================================================================-->
+    <!-- Deal of the day and new arrivals section :- -->
+
+    <section class="py-16 container mx-auto ">
+        <div class=" mx-auto px-6">
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <!-- ================= Deal of the Day ================= -->
+                <div
+                    class="relative overflow-hidden rounded-3xl p-10 text-white bg-gradient-to-br from-green-600 to-emerald-700">
+
+                    <!-- Decorative Circle -->
+                    <div class="absolute -top-16 -right-16 w-40 h-40 bg-white/10 rounded-full"></div>
+                    <div class="absolute -bottom-16 -left-16 w-40 h-40 bg-white/10 rounded-full"></div>
+
+                    <!-- Badge -->
+                    <span class="inline-flex items-center gap-2 bg-white/20 px-4 py-1 rounded-full text-sm mb-6">
+                        <i class="fas fa-fire text-yellow-300"></i>
+                        Deal of the Day
+                    </span>
+
+                    <!-- Title -->
+                    <h3 class="text-3xl font-bold mb-3">
+                        Fresh Organic Fruits
+                    </h3>
+
+                    <p class="text-green-100 mb-6">
+                        Get up to 40% off on selected organic fruits
+                    </p>
+
+                    <!-- Discount -->
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="text-4xl font-extrabold">40% OFF</span>
+                        <span class="text-green-200 text-sm">
+                            Use code:
+                            <span class="font-semibold text-white">ORGANIC40</span>
+                        </span>
+                    </div>
+
+                    <!-- Button -->
+                    <button routerLink="/shop"
+                        class="bg-white text-orange-600 font-semibold px-6 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition">
+                        Explore Now
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- ================= New Arrivals ================= -->
+                <div
+                    class="relative overflow-hidden rounded-3xl p-10 text-white bg-gradient-to-br from-orange-500 to-pink-500">
+
+                    <!-- Decorative Circle -->
+                    <div class="absolute -top-16 -right-16 w-40 h-40 bg-white/10 rounded-full"></div>
+                    <div class="absolute -bottom-16 -left-16 w-40 h-40 bg-white/10 rounded-full"></div>
+
+                    <!-- Badge -->
+                    <span class="inline-flex items-center gap-2 bg-white/20 px-4 py-1 rounded-full text-sm mb-6">
+                        <i class="fas fa-sparkles text-yellow-200"></i>
+                        New Arrivals
+                    </span>
+
+                    <!-- Title -->
+                    <h3 class="text-3xl font-bold mb-3">
+                        Exotic Vegetables
+                    </h3>
+
+                    <p class="text-orange-100 mb-6">
+                        Discover our latest collection of premium vegetables
+                    </p>
+
+                    <!-- Discount -->
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="text-4xl font-extrabold">25% OFF</span>
+                        <span class="text-orange-200 text-sm">
+                            Use code:
+                            <span class="font-semibold text-white">FRESH25</span>
+                        </span>
+                    </div>
+
+                    <!-- Button -->
+                    <button routerLink="/shop"
+                        class="bg-white text-orange-600 font-semibold px-6 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition">
+                        Explore Now
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!--========================================================================-->
+    <!--Featured Produtcs-->
+    <section class="">
+        <!-- title -->
+        <div class="flex items-center gap-3 my-8">
+            <div class="h-8 w-1.5 bg-linear-to-b from-emerald-500 to-emerald-700 rounded-full"></div>
+            <h2 class="text-3xl font-bold text-gray-800">Featured <span class="text-emerald-600">Products</span></h2>
+        </div>
+        <!--Products
+        Loop on product card
+        -->
+        @if (productList().length>0) { <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            @for (prod of productList().slice(0,10); track prod._id) {
+            <app-product-card [product]="prod" [wishListDetails]="wishListDetails()"></app-product-card>
+            }
+        </div>
+
+        }
+        @else{
+        <div class="text-center py-20">
+            <div class="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
+                <i class="fa-solid fa-box-open text-3xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">No Products Found</h3>
+            <p class="text-gray-500 mb-6">No products match your current filters.</p><a
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors"
+                routerLink="/shop">View All Products</a>
+        </div>
+        }
+
+    </section>
+
+    <!--========================================================================-->
+    <!-- NewsLetter and mobile app section :- -->
+    <section class=" my-10">
+        <div class="container mx-auto  px-6 ">
+            <div class="bg-white/70 backdrop-blur rounded-3xl p-8 md:p-12  shadow-lg shadow-emerald-200">
+
+                <div class="grid md:grid-cols-12 gap-12 items-center">
+
+                    <!-- LEFT SIDE -->
+                    <div class="md:col-span-8">
+
+
+                        <!-- Newsletter Badge -->
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="w-12 h-12 bg-green-600 text-white rounded-xl flex items-center justify-center shadow-md">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-green-700 font-semibold text-sm tracking-wide">NEWSLETTER</p>
+                                <p class="text-gray-500 text-sm">50,000+ subscribers</p>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <h2 class="text-3xl md:text-4xl font-bold leading-snug mb-4">
+                            Get the Freshest Updates
+                            <span class="text-green-600">Delivered Free</span>
+                        </h2>
+
+                        <p class="text-gray-600 mb-8">
+                            Weekly recipes, seasonal offers & exclusive member perks.
+                        </p>
+
+                        <!-- Feature Pills -->
+                        <div class="flex  gap-x-3 mb-8">
+
+                            <span
+                                class="flex items-center gap-2 px-4 py-2 bg-white  rounded-full text-sm text-gray-600 shadow-sm">
+                                <i class="fas fa-leaf text-green-600"></i>
+                                Fresh Picks Weekly
+                            </span>
+
+                            <span
+                                class="flex items-center gap-2 px-4 py-2 bg-white  rounded-full text-sm text-gray-600 shadow-sm">
+                                <i class="fas fa-truck text-green-600"></i>
+                                Free Delivery Codes
+                            </span>
+
+                            <span
+                                class="flex items-center gap-2 px-4 py-2 bg-white  rounded-full text-sm text-gray-600 shadow-sm">
+                                <i class="fas fa-tags text-green-600"></i>
+                                Members-Only Deals
+                            </span>
+
+                        </div>
+
+                        <!-- Input + Button -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <input type="email" placeholder="you@example.com"
+                                class="flex-1 px-5 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 outline-none" />
+
+                            <button
+                                class="bg-green-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-green-700 transition flex items-center justify-center gap-2">
+                                Subscribe
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-gray-500 mt-3 flex items-center gap-2">
+                            <i class="fas fa-sparkles text-green-500"></i>
+                            Unsubscribe anytime. No spam, ever.
+                        </p>
+
+                    </div>
+
+                    <!-- RIGHT SIDE (APP CARD) -->
+                    <div
+                        class=" md:col-span-4 bg-gradient-to-br from-slate-900 to-green-900 text-white p-8 rounded-3xl shadow-xl">
+
+                        <span
+                            class="inline-flex items-center gap-2 text-xs bg-green-500/20 text-green-300 px-3 py-1 rounded-full mb-4">
+                            <i class="fas fa-mobile-alt"></i>
+                            MOBILE APP
+                        </span>
+
+                        <h3 class="text-2xl font-bold mb-3">
+                            Shop Faster on Our App
+                        </h3>
+
+                        <p class="text-gray-300 text-sm mb-6">
+                            Get app-exclusive deals & 15% off your first order.
+                        </p>
+
+                        <!-- Store Buttons -->
+                        <div class="space-y-4">
+
+                            <button
+                                class="w-full bg-white/10 hover:bg-white/20 transition rounded-xl py-3 flex items-center justify-center gap-3">
+                                <i class="fab fa-apple text-xl"></i>
+                                Download on App Store
+                            </button>
+
+                            <button
+                                class="w-full bg-white/10 hover:bg-white/20 transition rounded-xl py-3 flex items-center justify-center gap-3">
+                                <i class="fab fa-google-play text-lg"></i>
+                                Get it on Google Play
+                            </button>
+
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="mt-6 flex items-center gap-3 text-sm">
+                            <div class="text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-300">4.9 · 100K+ downloads</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--========================================================================-->
+
+
+</div>
